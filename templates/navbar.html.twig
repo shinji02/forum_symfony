@@ -1,11 +1,71 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link text-white" href="#" id="loginPopup">Se connecter</a>
-            <a class="nav-item nav-link text-white" href="{{ path("app_register") }}">S'inscrire</a>
+            <section class="nav-container">
+                <aside class="menu">
+                    <div class="menu-content">
+
+                    </div>
+                    <a class="nav-item nav-link text-white" href="#">Se connecter</a>
+                    <a class="nav-item nav-link text-white" href="{{ path("app_register") }}">S'inscrire</a>
+                </aside>
+            </section>
         </div>
     </div>
+</nav>-->
+<nav>
+    <section class="nav-container">
+        <aside class="logo"></aside>
+        <aside class="menu">
+            <div class="menu-content">
+                {% if app.user %}
+                    <div class="dropdown">
+                        <img src="build/background.jpeg" width="50px" height="50px">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profils
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Modifier le profil</a>
+                            <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-power-off"></i> Se déconnecter</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a id="navLogin" href="#">Login</a> | <a href="{{ path('app_register') }}">Register</a>
+                {% endif %}
+            </div>
+            <div class="arrow-up d-none"></div>
+        </aside>
+        <div id="formLogin" class="login-form d-none" >
+            <form method="post" class="text-center" action="">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <h1 class="h3 mb-3 font-weight-normal">Se connecter </h1>
+                <fieldset class="row m-2">
+                    <input type="text" value="{{ last_username }}" name="username" id="inputName" class="form-control" placeholder="Pseudo" required>
+                </fieldset>
+                <fieldset class="row m-2">
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                </fieldset>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                <div class="checkbox mb-1">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Restez connectez
+                    </label>
+                </div>
+
+                <button class="btn btn-lg btn-primary mb-3" type="submit">
+                    Se connectez
+                </button>
+            </form>
+        </div>
+    </section>
 </nav>
+

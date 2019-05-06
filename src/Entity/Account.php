@@ -36,7 +36,7 @@ class Account implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,unique=true)
      */
     private $username;
 
@@ -49,6 +49,16 @@ class Account implements UserInterface
      * @ORM\Column(type="string", length=25, nullable=true)
      */
     private $keyPass;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $keyCreateAccountValidator;
 
     public function getId(): ?int
     {
@@ -153,6 +163,30 @@ class Account implements UserInterface
     public function setKeyPass(?string $keyPass): self
     {
         $this->keyPass = $keyPass;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getKeyCreateAccountValidator(): ?string
+    {
+        return $this->keyCreateAccountValidator;
+    }
+
+    public function setKeyCreateAccountValidator(string $keyCreateAccountValidator): self
+    {
+        $this->keyCreateAccountValidator = $keyCreateAccountValidator;
 
         return $this;
     }

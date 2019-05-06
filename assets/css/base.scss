@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~sweetalert2/dist/sweetalert2.min.css";
 @import "variable.scss";
 @import "maxim.scss";
 @import "animate.scss";
@@ -13,6 +14,65 @@ body{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+//NAVBAR
+nav{
+  width: 100%;
+  height: 65px;
+  position: relative;
+  background: dimgrey;
+  box-shadow: 0px 2px 8px 0px #333;
+}
+.nav-container{
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  &.logo{
+    width: 200px;
+    height: 65px;
+    float: left;
+  }
+}
+.menu{
+  width: 100%;
+  height: 65px;
+}
+.menu>.menu-content{
+  width: 200px;
+  height: 65px;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+  position: relative;
+  color: #fff;
+  line-height: 65px;
+}
+.menu>.menu-content>a{
+  color: #ffffff;
+}
+.arrow-up{
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #fff;
+  left:0;
+  top: 50px;
+  z-index: 5;
+
+}
+.login-form{
+  position: absolute;
+  width: 300px;
+  height: inherit;
+  background: #fff;
+  z-index: 5;
+  border-radius: 2px;
+  box-shadow: 0px 5px 5px 0px #656565;
+
 }
 
 
