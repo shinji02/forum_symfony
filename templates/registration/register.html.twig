@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="mx-auto col-6">
+
+        <h1>Créer votre compte</h1>
+        {% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(registrationForm) }}
+        <input type="hidden" id="googleToken">
+            {{ form_row(registrationForm.username) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.confirmPassword) }}
+            <button class="btn btn-dark d-none" id="submitForm" type="submit">Crée mon compte</button>
+            <button class="btn btn-dark" id="checkRobot">Crée mon compte</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+@import "~reset-css/reset.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "variable.scss";
+@import "maxim.scss";
+@import "animate.scss";
+
+body{
+  font-family: 'Roboto', sans-serif !important;
+  background: url(../images/background.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
