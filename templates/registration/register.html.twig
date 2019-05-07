@@ -9,9 +9,12 @@
         {% if not errorForm is empty %}
             <div class="alert alert-danger">{{ errorForm }}</div>
         {% endif %}
+        {% if not sucessForm is empty %}
+            <div class="alert alert-success">{{ sucessForm }}</div>
+        {% endif %}
         {% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
         {{ form_start(registrationForm) }}
-        <input type="hidden" id="googleToken">
+        <input type="hidden" id="googleToken" name="googleToken">
             {{ form_row(registrationForm.username) }}
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.plainPassword) }}

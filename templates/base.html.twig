@@ -35,7 +35,7 @@
         </div>
 
         {% block javascripts %}
-            <script src="https://www.google.com/recaptcha/api.js?render={{ google_recaptcha_site }}"></script>
+            <script src="https://www.google.com/recaptcha/api.js?render={{ parameter.googleReCaptchaKey }}"></script>
             {{ encore_entry_script_tags('base') }}
         {% endblock %}
         {% block javascriptsCustom %}
