@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('admin') }}
+        {% endblock %}
+        {% block stylesheetsCustom %}{% endblock %}
+
+    </head>
+    <body id="page-top">
+    {% include 'admin/navbar.html.twig' %}
+    <div id="wrapper">
+        {% include 'admin/asidenav.html.twig' %}
+        <div id="content-wrapper">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+    {% block javascripts %}
+        <script src="https://www.google.com/recaptcha/api.js?render={{ parameter.googleReCaptchaKey }}"></script>
+        {{ encore_entry_script_tags('admin') }}
+    {% endblock %}
+    {% block javascriptsCustom %}
+    {% endblock %}
+    </body>
+</html>

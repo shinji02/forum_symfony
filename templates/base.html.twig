@@ -21,15 +21,15 @@
     </head>
     <body>
 
-        <div class="container-fluid row">
-            <div class="col-2">
+        <div class="row" style="width: 100%;margin-left: 0px !important;">
+            <div class="col-2" id="colLeft">
                 {% block colLeft %}{% endblock %}
             </div>
-            <div class="col-8">
+            <div class="col-8" id="colMiddle">
                 {% include 'navbar.html.twig' %}
                 {% block body %}{% endblock %}
             </div>
-            <div class="col-2">
+            <div class="col-2" id="colRight">
                 {% block colRight %}{% endblock %}
             </div>
         </div>

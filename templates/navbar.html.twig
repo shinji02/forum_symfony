@@ -10,24 +10,30 @@
                             Profils
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% if is_granted('ROLE_MODO') %}
+                                <a class="dropdown-item" href="{{ path('admin') }}">Panel Admin</a>
+
+                            {% endif %}
                             <a class="dropdown-item" href="#">Modifier le profil</a>
                             <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-power-off"></i> Se déconnecter</a>
                         </div>
                     </div>
                 {% else %}
-                    <a id="navLogin" href="#">Login</a> | <a href="{{ path('app_register') }}">Register</a>
+                    <a  href="{{ path('home') }}">Home</a>  <a id="navLogin" href="#">Login</a>  <a href="{{ path('app_register') }}">Register</a>
                 {% endif %}
             </div>
             <div class="arrow-up d-none"></div>
         </aside>
         <div id="formLogin" class="login-form d-none" >
             <form method="post" class="text-center" action="{{ path('home') }}">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% if error is defined %}
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
                 {% endif %}
                 <h1 class="h3 mb-3 font-weight-normal">Se connecter </h1>
                 <fieldset class="row m-2">
-                    <input type="text" value="{{ last_username }}" name="username" id="inputName" class="form-control" placeholder="Pseudo" required>
+                    <input type="text" value="{% if last_username is defined %}{{ last_username }}{% endif %}" name="username" id="inputName" class="form-control" placeholder="Pseudo" required>
                 </fieldset>
                 <fieldset class="row m-2">
                     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>

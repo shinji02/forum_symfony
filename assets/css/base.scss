@@ -9,11 +9,26 @@
 
 body{
   font-family: 'Roboto', sans-serif !important;
+}
+
+#colLeft{
+  height: 100vh;
+  background-color: $color-background;
+}
+#colMiddle{
   background: url(../images/background.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 100vh;
+  box-shadow: 0px 0px 0px 0px #333;
+
+}
+#colRight{
+  height: 100vh;
+  background-color: $color-background;
+
 }
 
 //NAVBAR

@@ -1,0 +1,59 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block stylesheetsCustom %}
+    <link type="text/css" rel="stylesheet" href="../fontawesome-iconpicker/css/fontawesome-iconpicker.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('admin') }}">Panel admin</a>
+            </li>
+            <li class="breadcrumb-item active">Gestion de catégorie</li>
+        </ol>
+        <div class="card col-3" style="">
+            <div class="card-body">
+                <h5 class="card-title text-center">Ajouter une catégorie</h5>
+                {% form_theme formCategorie 'bootstrap_4_horizontal_layout.html.twig' %}
+
+                {{ form_start(formCategorie) }}
+
+                <div class="col-12">
+                {{ form_label(formCategorie.name) }}
+                {{ form_errors(formCategorie.name) }}
+                {{ form_widget(formCategorie.name) }}
+                {{ form_help(formCategorie.name) }}
+                </div>
+                <div class="col-12">
+                {{ form_label(formCategorie.Color) }}
+                {{ form_errors(formCategorie.Color) }}
+                {{ form_widget(formCategorie.Color) }}
+                {{ form_help(formCategorie.Color) }}
+                </div>
+
+                <div class="col-12">
+                    <label class="col-sm-12">Icone</label>
+                    <div class="btn-group col-12">
+                        <button type="button" class="btn btn-dark iconpicker-component col-10"><i></i></button>
+                        <button type="button" class="icp icp-dd btn btn-dark dropdown-toggle icon-picker-button col-2" data-selected="fa-car" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu"></div>
+                    </div>
+                </div>
+
+
+                {{ form_end(formCategorie) }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascriptsCustom %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../fontawesome-iconpicker/js/fontawesome-iconpicker.min.js"></script>
+    <script src="{{ asset('app.js') }}"></script>
+{% endblock %}

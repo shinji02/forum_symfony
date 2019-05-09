@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RoleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CatgorieRepository")
+ * @UniqueEntity("name")
  */
-class Role
+class Catgorie
 {
     /**
      * @ORM\Id()
@@ -18,23 +20,24 @@ class Role
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $symfonyName;
+    private $Color;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $color;
+    private $Icon;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $perm;
+    private $pos;
 
     public function getId(): ?int
     {
@@ -53,38 +56,38 @@ class Role
         return $this;
     }
 
-    public function getSymfonyName(): ?string
-    {
-        return $this->symfonyName;
-    }
-
-    public function setSymfonyName(string $symfonyName): self
-    {
-        $this->symfonyName = $symfonyName;
-
-        return $this;
-    }
-
     public function getColor(): ?string
     {
-        return $this->color;
+        return $this->Color;
     }
 
-    public function setColor(string $color): self
+    public function setColor(string $Color): self
     {
-        $this->color = $color;
+        $this->Color = $Color;
 
         return $this;
     }
 
-    public function getPerm(): ?int
+    public function getIcon(): ?string
     {
-        return $this->perm;
+        return $this->Icon;
     }
 
-    public function setPerm(int $perm): self
+    public function setIcon(string $Icon): self
     {
-        $this->perm = $perm;
+        $this->Icon = $Icon;
+
+        return $this;
+    }
+
+    public function getPos(): ?string
+    {
+        return $this->pos;
+    }
+
+    public function setPos(string $pos): self
+    {
+        $this->pos = $pos;
 
         return $this;
     }
