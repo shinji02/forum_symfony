@@ -6,6 +6,7 @@ use App\Entity\Catgorie;
 use App\Form\CategorieFormType;
 use App\phpClass\Cnavbar;
 use App\Repository\AccountRepository;
+use App\Repository\CatgorieRepository;
 use App\Repository\ParameterRepository;
 use App\Repository\RoleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -38,13 +39,17 @@ class AdminController extends AbstractController
     /**
      * @Route("/categorie", name="categorie")
      */
-    public function categorie(ObjectManager $manager,Request $request,ParameterRepository $parameterRepository,RoleRepository $roleRepository, UserInterface $userInterface,AccountRepository $accountRepository)
+    public function categorie(CatgorieRepository $catgorieRepository,ObjectManager $manager,Request $request,ParameterRepository $parameterRepository,RoleRepository $roleRepository, UserInterface $userInterface,AccountRepository $accountRepository)
     {
         $this->params['user'] = $accountRepository->findOneByEmail($userInterface->getUsername());
         $role = $roleRepository->findBySymfonyName($this->params['user']->getRoles()[0]);
         $this->params['userRole'] = $role;
 
-        $categorie = new Catgorie();
+
+        if(isset($_GET['id']))
+            $categorie = $catgorieRepository->find($_GET['id']);
+        else
+            $categorie = new Catgorie();
         $form = $this->createForm(CategorieFormType::class, $categorie);
         $form->handleRequest($request);
 
@@ -60,6 +65,7 @@ class AdminController extends AbstractController
         }
 
         $this->params['formCategorie'] = $form->createView();
+        $this->params['categoris'] = $catgorieRepository->findBy([],['pos' => 'ASC']);
 
         return $this->render('admin/categorie.html.twig', $this->params);
     }

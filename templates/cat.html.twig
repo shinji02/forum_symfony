@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-12 mx-auto mt-5">
+
+        <div class="col-12 row">
+            <div class="col-10">
+
+            </div>
+            <div class="col-2">
+                <a href="{{ path('cat',{'id':app.request.query.get("id"),'action':'create'}) }}">
+                    <button class="btn btn-dark">Crée un suject</button>
+                </a>
+            </div>
+        </div>
+        {% if app.request.query.get('action') is defined %}
+            <form method="post">
+                <div class="col-12 form-group">
+                    <label>Nom du suject</label>
+                    <input type="text" name="name" id="name" class="form-control"required>
+                </div>
+                <div class="col-12 form-group">
+                    <label>Votre texte</label>
+                <textarea required name="body">Votre Texte</textarea>
+                </div>
+                <button class="btn btn-dark" type="submit">Publier</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block javascriptsCustom %}
+<script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+
+<script>tinymce.init({selector:'textarea'});</script>
+
+{% endblock %}

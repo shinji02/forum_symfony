@@ -13,6 +13,29 @@
             </li>
             <li class="breadcrumb-item active">Gestion de catégorie</li>
         </ol>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categorie in categoris %}
+                    <tr>
+
+                        <td class="text-white">
+                            <a href="{{ path('categorie',{'id':categorie.id}) }}">
+                                <i class="{{ categorie.icon }}"></i> {{ categorie.name }}</td>
+                            </a>
+                        <td>
+                            <i class="fas fa-times delete"></i>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <div class="card col-3" style="">
             <div class="card-body">
                 <h5 class="card-title text-center">Ajouter une catégorie</h5>

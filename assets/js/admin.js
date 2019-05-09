@@ -14,12 +14,23 @@ const $ = require('jquery');
 require('bootstrap');
 const Swal = require('sweetalert2');
 require('bootstrap-colorpicker');
-require('picke')
 $("#categorie_form_Color").colorpicker();
 $("#categorie_form_Color").on('colorpickerChange colorpickerCreate', function (e) {
     $("#categorie_form_Color").val(e.color.toString());
 });
 
+
+$(".arrowUp").click(function (event) {
+  location.href="/movePosition-"+$(this).data('id')+"-"+$(this).data('preview');
+});
+
+$(".arrowDown").click(function (event) {
+    alert("ok");
+});
+
+$(".delete").click(function (event) {
+
+});
 
 
 

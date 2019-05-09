@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -60,6 +62,16 @@ class Account implements UserInterface
      */
     private $keyCreateAccountValidator;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Subjec", mappedBy="auhor")
+     */
+    private $subjecs;
+
+    public function __construct()
+    {
+        $this->subjecs = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,7 +96,7 @@ class Account implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**
@@ -187,6 +199,37 @@ class Account implements UserInterface
     public function setKeyCreateAccountValidator(string $keyCreateAccountValidator): self
     {
         $this->keyCreateAccountValidator = $keyCreateAccountValidator;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Subjec[]
+     */
+    public function getSubjecs(): Collection
+    {
+        return $this->subjecs;
+    }
+
+    public function addSubjec(Subjec $subjec): self
+    {
+        if (!$this->subjecs->contains($subjec)) {
+            $this->subjecs[] = $subjec;
+            $subjec->setAuhor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubjec(Subjec $subjec): self
+    {
+        if ($this->subjecs->contains($subjec)) {
+            $this->subjecs->removeElement($subjec);
+            // set the owning side to null (unless already changed)
+            if ($subjec->getAuhor() === $this) {
+                $subjec->setAuhor(null);
+            }
+        }
 
         return $this;
     }
